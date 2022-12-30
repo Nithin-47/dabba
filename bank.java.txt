@@ -1,0 +1,265 @@
+import java.util.*;
+import java.lang.Math;
+
+class Account{
+
+String name,type,acc_num;
+
+Account(String n,String t,String a){
+name=n;
+type=t;
+acc_num=a;
+
+}
+
+
+
+
+
+}
+
+
+class Savings extends Account{
+
+    double balance=0,r=0.02,n=2,t,compound,update,withdraw;
+
+Savings(String n,String t,String a){
+
+super(n,t,a);
+
+}
+
+
+void update(){
+    Scanner in=new Scanner(System.in);
+
+    System.out.print("Enter the Amount to be added to your balance:");
+    update=in.nextDouble();
+
+    balance=balance+update;
+
+    System.out.print("Updated Balance in your Savings Account:"+balance);
+    
+}   
+
+void withdrawal(){
+
+
+    Scanner out=new Scanner(System.in);
+
+    System.out.print("Enter the Amount to be withdrawed from your account:");
+    withdraw=out.nextDouble();
+
+    balance=balance-withdraw;
+
+    System.out.print("Updated Balance in your Savings Account:"+balance);
+
+
+
+}
+
+void display(){
+    System.out.println("Name of the account Holder:"+name);
+    System.out.println("Account no:"+acc_num);
+    System.out.println("Type of Account:"+type);
+
+    System.out.println("Balance in your Savings Account:"+balance);
+}
+
+
+void calc_compound(){
+Scanner sc=new Scanner(System.in);
+
+System.out.print("Enter the Time period upto which you'd like to receive compound Interest:");
+t=sc.nextDouble();
+
+compound=balance*(Math.pow(1+(r/n),n*t));
+
+balance=balance+compound;
+
+System.out.print("Updated Balance in your Savings Account:"+balance);
+
+}
+
+
+} 
+
+class Current extends Account{
+
+    private double min=5000,penalty=1000;
+    double checque_in,checque_out,balance=0,update,withdraw;
+
+
+    Current(String n,String t,String a){
+
+        super(n,t,a);
+        
+    }
+        
+    void update(){
+        Scanner in=new Scanner(System.in);
+    
+        System.out.print("Enter the Amount to be added to your balance:");
+        update=in.nextDouble();
+        
+        
+        balance=balance+update;
+    
+        System.out.print("Updated Balance in your Current Account:"+balance);
+
+        if(balance<min)
+        {
+            System.out.print("Your balance is less than the minimum balance required:"+balance+"\nMin Balance required(penalty will be levied when you withdraw):"+min);
+        }
+        
+    }   
+
+
+
+    void display(){
+        System.out.println("Name of the account Holder:"+name);
+        System.out.println("Account no:"+acc_num);
+        System.out.println("Type of Account:"+type);
+        System.out.print("Balance in your Savings Account:"+balance);
+    }
+    
+
+
+    void withdrawal(){
+
+
+        Scanner out=new Scanner(System.in);
+    
+        System.out.print("Enter the Amount to be withdrawed from your account:");
+        withdraw=out.nextDouble();
+    
+
+
+        balance=balance-withdraw;
+    
+        System.out.print("Updated Balance in your Savings Account:"+balance);
+    
+        if(balance<min)
+        {
+            System.out.print("\nYour balance is less than the minimum balance required:"+balance+"\nMin Balance required:"+min+"\nBalance after levying Penalty:"+(balance-penalty));
+            balance=balance-penalty;
+        }
+    
+    }
+
+    void checque_in(){
+        Scanner cha=new Scanner(System.in);
+    
+        System.out.print("Enter the Amount to be added from checque:");
+        update=cha.nextDouble();
+        
+        
+        balance=balance+update;
+    
+        System.out.print("Updated Balance in your Current Account:"+balance);
+
+        if(balance<min)
+        {
+            System.out.print("\nYour balance is less than the minimum balance required:"+balance+"\nMin Balance required(penalty will be levied when you withdraw):"+min);
+        }
+        
+    }   
+
+
+    void checque_out(){
+        Scanner ch=new Scanner(System.in);
+
+        System.out.print("Enter the Amount to be withdrawed from your account:");
+        checque_in=ch.nextDouble();
+
+        if(balance>checque_in)
+        {
+            if(balance-checque_in>min)
+            {
+
+        System.out.print("Updated Balance in your Savings Account:"+(balance-checque_in));
+
+            }
+            else if((balance-checque_in<min)&&(balance-checque_in>=0))
+            System.out.print("\nYour balance is less than the minimum balance required:"+balance+"\nMin Balance required:"+min+"\nBalance after levying Penalty:"+(balance-penalty));
+            balance=balance-checque_in-penalty;
+
+            }
+            else if(balance<min){
+
+                System.out.print("Checque has been Bounced");
+
+            }
+        
+
+    }
+
+}
+
+
+
+class Main
+{
+    public static void main(String args[])
+    {
+        int input,another;
+        Scanner choice=new Scanner(System.in);
+
+        Current C=new Current("Nishanth","Current","1109873425");
+
+        Savings S=new Savings("Nach Nach","Savings","11789883405");
+
+while(true)
+{
+        System.out.print("\n--MENU--\n");
+        System.out.print("1.Savings\n2.Current\n");
+        input=choice.nextInt();
+
+        switch(input)
+        {
+            case 1:
+            System.out.print("\n--MENU--\n");
+            System.out.print("1.Update\n2.Withdraw\n3.Interest\n4.Display\n5.Exit\n");
+                another=choice.nextInt();
+                switch(another)
+                {
+                    case 1:S.update();
+                            break;
+                    case 2:S.withdrawal();
+                            break;
+                    case 3:S.calc_compound();
+                            break;
+                    case 4:S.display();
+                            break;
+                    case 5:System.exit(0);
+                }
+            break;
+            case 2:
+            System.out.print("\n--MENU--\n");
+            System.out.print("1.Update\n2.Withdraw\n3.Checque_IN\n4.Checque_Out\n5.Display\n6.Exit\n");
+                another=choice.nextInt();
+                switch(another)
+                {
+                    case 1:C.update();
+                            break;
+                    case 2:C.withdrawal();
+                            break;
+                    case 3:C.checque_in();
+                            break;
+                    case 4:C.checque_out();
+                            break;
+                    case 5:C.display();
+                            break;
+                    case 6:System.exit(0);
+                }
+            break;
+
+
+              }
+        }
+    }
+
+
+
+
+}
