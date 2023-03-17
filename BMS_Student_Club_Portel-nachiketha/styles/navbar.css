@@ -1,0 +1,127 @@
+:root {
+    --blue-1: #B5D8F8;
+    --pink-1: #97bcf0;
+    --blue-1: #7abbf9;
+    --white-2: #daf2f8;
+
+}
+
+
+
+
+
+.navbar {
+    position: fixed;
+    left: 0;
+    background-color: var(--white-2);
+    z-index: 9;
+    /* border-right: 1px solid black; */
+    
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    height: 2.25rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.bordering-icons{
+    padding: 7px 10px;
+    transition: background-color 0.5s linear,border-radius 0.5s linear;
+}
+
+.bordering-icons:hover{
+    border-radius: 60px;
+    background-color: #dadce0;
+    
+    /* color: #333333; */
+}
+
+
+.active-link{
+    border-radius: 60px;
+    background-color: #719cf2;
+}
+
+
+
+/* .nav-link:hover{
+
+    /* display: inline-block; */
+    /* transform: rotate(360deg); */
+/*     
+    background-color: lightgray;
+    transition: 0.4s;
+    color: #62b1fa;
+
+
+} */ 
+
+.link-text {
+    font-size: 0.75rem;
+}
+
+/* For large screens */
+@media only screen and (min-width: 600px) {
+    .navbar {
+        top: 0;
+        height: 100vh;
+        width: 4rem;
+    }
+
+    .nav-item {
+        margin: 15px 0px;
+        padding: 10px 0px;
+    }
+
+    .nav-item:first-child {
+        margin-top: 25px;
+        /* margin-bottom: 35px; */
+    }
+
+    .nav-item:last-child {
+        margin-top: auto;
+        margin-bottom: 15px;
+    }
+}
+
+/* For small screens */
+@media only screen and (max-width: 600px) {
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        height: 3.75rem;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .nav-item {
+        margin-bottom: 0.25rem;
+    }
+}

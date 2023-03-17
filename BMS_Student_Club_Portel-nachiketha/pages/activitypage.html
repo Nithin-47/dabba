@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Page</title>
+
+    <link rel="stylesheet" href="/styles/basestyles.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/clubs_maincontainer.css">
+
+    <script src="/components/navBar.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/170b4bdd0f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav-bar active="activity"></nav-bar>
+
+    <main class="maincontainer">
+        <div>
+            <p class="pageheading"></p>
+            <p>A game never played before, organized by CodeIO</p>
+        </div>
+
+        <p id="reg_status"></p>
+        <ul id="reg_list"></ul>
+
+        <div>
+            <h2>Register here</h2>
+            <form>
+                <input type="text" name="username" id="username">
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </main>
+
+<script>
+    const form = document.querySelector("form");
+    const input = document.querySelector("#username");
+    const reg_list = document.querySelector("#reg_list");
+
+    // localStorage.removeItem("reg_list");
+
+    const existingRegs = JSON.parse(localStorage.getItem("reg_list"));
+    const reg_data = existingRegs || [];
+
+    const reg_status = document.querySelector("#reg_status");
+    if(!existingRegs){
+        reg_status.innerHTML = "No one registered"
+    }
+    
+    reg_data.forEach(reg => {
+        addReg(reg);
+    });
+
+    function addReg(reg_username) {
+        reg_data.push(reg_username);
+        const li = document.createElement("li");
+        li.innerHTML = reg_username;
+        reg_list.appendChild(li);
+        localStorage.setItem("reg_list", JSON.stringify(reg_data));
+    }
+
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        addReg(input.value);
+        input.value = null;
+
+        if(reg_data){
+            reg_status.innerHTML = "";
+        }
+    }
+
+
+    const getQueryParams = ( params, url ) => {
+        let href = url;
+        // this is an expression to get query strings
+        let regexp = new RegExp( '[?&]' + params + '=([^&#]*)', 'i' );
+        let qString = regexp.exec(href);
+        return qString ? qString[1] : null;
+    };
+
+    let pageHeadingRef = document.querySelector(".pageheading");
+    pageHeadingRef.innerHTML = getQueryParams("title", window.location.href).replace(/%20/g, " ");
+</script>
+</body>
+</html>

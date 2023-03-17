@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Activities</title>
+
+    <link rel="stylesheet" href="/styles/basestyles.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/activities.css">
+
+    <script src="/components/navBar.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/170b4bdd0f.js" crossorigin="anonymous"></script>
+    <script src="/jshelpers/includeHTML.js" defer></script>
+</head>
+<body>
+    <nav-bar active="activity"></nav-bar>
+    <main class="maincontainer">
+        <p class="pageheading">Activites</p>
+        <div class="previous">
+            <b>Past Events</b>
+
+             
+        <div class="cards">
+            <div class="cardcontainer">
+                
+            </div>
+        </div>
+        </div>
+        <div class="current">
+            <b>Current Events</b><br>
+            
+        <div class="cards1">
+            <div class="cardcontainer">
+                
+            </div>
+        </div>
+        </div>
+        <div class="upcoming">
+            <b>Upcoming Events</b><br>
+            
+        <div class="cards2">
+            <div class="cardcontainer"><br>
+                
+            </div>
+        </div>
+        </div>
+
+       
+    </main>
+</body>
+<script>
+    let cardsRef = document.querySelector(".cards");
+    let cards1Ref = document.querySelector(".cards1");
+    let cards2Ref = document.querySelector(".cards2");
+
+
+    let cardInfo = [
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+    ]
+    let card1Info= [
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C5622AQH1luHpnE3PKQ/feedshare-shrink_2048_1536/0/1668875957105?e=1672876800&v=beta&t=GcF5UvFFIUUhr9d9KLKDmv4TiYFh6lPSdQg0RXg7prI",
+            title: "Grid"
+        },
+    ]
+    let card2Info= [
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+        {
+          img:"https://bmsceiaa.files.wordpress.com/2006/11/17ac.jpg" ,
+          title:"hvcdsv"
+        },
+    ]
+
+    function giveCard(imglink, title){
+        let card_template = `
+            <div class="cardcontainer">
+                <a class="card_link card" href="/pages/activitypage.html?title=${title}">
+                    <div class="card_img_container">
+                        <img class="card_image" src="${imglink}" alt="an_image">
+                    </div>
+                    <div class="card_content">
+                        <p>${title}</p>
+                    </div>
+                </a>
+            </div>
+        `
+
+        return card_template;
+    }
+
+    let card_html_list = "";
+    let card1_html_list = "";
+    let card2_html_list = "";
+
+    for(let i = 0; i < cardInfo.length; i++){
+        card_html_list += giveCard(cardInfo[i].img, cardInfo[i].title);
+    }
+    for(let i = 0; i < card1Info.length; i++){
+        card1_html_list += giveCard(card1Info[i].img, card1Info[i].title);
+    }
+    for(let i = 0; i < card2Info.length; i++){
+        card2_html_list += giveCard(card2Info[i].img, card2Info[i].title);
+    }
+
+    cardsRef.innerHTML = card_html_list;
+    cards1Ref.innerHTML = card1_html_list;
+    cards2Ref.innerHTML = card2_html_list;
+</script>
+</html>

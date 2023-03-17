@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+* {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+}
+
+.pageheading {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+/* 
+html,body{
+
+overflow-x: hidden;
+
+
+
+
+
+} */
+
+.body{
+
+background-image: url("https://img.freepik.com/free-vector/abstract-gradient-triangle-background_598544-201.jpg?size=338&ext=jpg&ga=GA1.2.740287018.1670473991&semt=sph");
+
+
+
+
+}

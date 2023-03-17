@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs</title>
+
+    <link rel="stylesheet" href="/styles/basestyles.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/clubs_maincontainer.css">
+
+    <script src="/components/navBar.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/170b4bdd0f.js" crossorigin="anonymous"></script>
+    <script src="/jshelpers/includeHTML.js" defer></script>
+</head>
+<body>
+    <!-- <div include-html="/components/navbar.html"></div> -->
+    <nav-bar active="clubs"></nav-bar>
+    
+    <main class="maincontainer">
+        <p class="pageheading">Clubs</p>
+
+        <div class="cards">
+            <div class="cardcontainer">
+                
+            </div>
+        </div>
+    </main>
+</body>
+
+<script>
+    let cardsRef = document.querySelector(".cards");
+
+    let cardInfo = [
+    {
+            img: "https://media-exp1.licdn.com/dms/image/C560BAQGjsIsw6De1Fw/company-logo_200_200/0/1657384232889?e=1677110400&v=beta&t=Al-V7Nh-2mPRv8LKuKEF-lGCSlcA8sU95BEVjHkAVrw",
+            title: "CodeIO",
+            link: "/pages/clubs/codeio.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C560BAQG_MjS_vx6-Uw/company-logo_200_200/0/1620484279232?e=2147483647&v=beta&t=GvG0aD6QAbN55KihG1jqVg69eypEXIrxRykYHc-0iRY",
+            title: "Protocol",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://i0.wp.com/thebirchgrove.com/wp-content/uploads/2016/01/pentagram.png",
+            title: "Pentagram",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/D560BAQF4t0LOIS8MSQ/company-logo_200_200/0/1667057008438?e=1677110400&v=beta&t=Db-TwmrW09FSApwHnMo3YcnxsLkAn8T9kq2f4wYLkbo",
+            title: "ISE Students Club",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C560BAQH8dCimKRi1mA/company-logo_200_200/0/1641445499133?e=1677110400&v=beta&t=JV9hq1RO8fK1EyRlWl8hhELKQF_6gJc3Qrs_Qsuq-Qo",
+            title: "Augment.AI",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C4E0BAQHn6uTqiZysag/company-logo_200_200/0/1621839490647?e=1677110400&v=beta&t=XHRZybel-vBgpQIZcDeR79DaeuZkz_3uXoh-wAc2kA0",
+            title: "BMSCE IEEE",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C4D03AQFqwzUReNP2Wg/profile-displayphoto-shrink_200_200/0/1628067093437?e=1674691200&v=beta&t=cqDzDQdAAF950DOJ4WWkldVjOk0mwAm10fxD79bPqPY",
+            title: "Robotics Club",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C560BAQHtXo73G61Ngw/company-logo_200_200/0/1519887894284?e=1677110400&v=beta&t=zTYC4m2K4nJ4uHabdfYFN5h3Yc6NOLshvVO7YaBasJQ",
+            title: "Aero BMSCE",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/C560BAQH-JTkGCg27OA/company-logo_200_200/0/1661083666785?e=1677110400&v=beta&t=ejxcVQsoBW0pNwYHD5uIgt6GqM9Db-Qd-_Pc5raGeVE",
+            title: "GDSC",
+            link:"/pages/clubpage.html"
+        },
+        {
+            img: "https://media-exp1.licdn.com/dms/image/D4E0BAQHx8BqKcnBBHA/company-logo_200_200/0/1666233035009?e=1677110400&v=beta&t=GANoTOy2vo9zL2K5fDjiiI9f_YK72e4XT_IvC2lY6qI",
+            title: "Ninaad",
+            link:"/pages/clubpage.html"
+        },
+    ]
+
+    function giveCard(imglink, title,link){
+        let card_template = `
+            <div class="cardcontainer">
+                <a class="card_link card" href="${link}">
+                    <div class="card_img_container">
+                        <img class="card_image" src="${imglink}" alt="an_image">
+                    </div>
+                    <div class="card_content">
+                        <p>${title}</p>
+                    </div>
+                </a>
+            </div>
+        `
+
+        return card_template;
+    }
+
+    let card_html_list = "";
+
+    for(let i = 0; i < cardInfo.length; i++){
+        card_html_list += giveCard(cardInfo[i].img, cardInfo[i].title,cardInfo[i].link);
+    }
+
+    cardsRef.innerHTML = card_html_list;
+</script>
+
+</html>
+
+<!-- Card Template -->
+<!-- <a class="card_link card" href="#">
+    <img class="card_image" src="https://fakeimg.pl/400x300/009578/fff/" alt="an_image">
+    <div class="card_content">
+        <p>CodeIO</p>
+    </div>
+</a> -->
